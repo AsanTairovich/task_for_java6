@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class Task {
@@ -13,6 +16,7 @@ public class Task {
      * @return "Среда"
      */
     public String getWeekOfDay(int year, int month, int day) {
+
         return "";
     }
 
@@ -30,8 +34,70 @@ public class Task {
      * Объеденный массив = {1,2,3,4} и медиана (2+3) / 2 = 2.5;
      * @return 2.5
      */
+//    int[] number = {10, 2, 3, 4, 5, 6, 7, 8, 9, 1};
+//
+//    int count3 = 0;
+//    int count4 = 0;
+//
+//        for (int i = 0; i < number.length; i++) {
+//        max = Math.max(max, number[i]);
+//        count3 = i;
+//        min = Math.min(max, number[i]);
+//    }
     public double method1(int[] array, int[] secondArray) {
-        return 0;
+//        int a = array.length +secondArray.length;
+//        int[] test1= new int[a];
+//        int[] test2= new int[]{};
+//
+//        for (int i = 0; i < array.length; i++) {
+//            for (int i1 = 0; i1 < secondArray.length; i1++) {
+//                for (int i2 = 0; i2 < test1.length; i2++) {
+//                    test1[i2] = array[i];
+//                    i2++;
+//                    test1[i2] = secondArray[i1];
+//                }
+//            }
+//        }
+//        Arrays.sort(test1);
+//        if (a / 2 == 1) {
+//            int test = 0;
+//            for (int j = 0; j < test1.length; j++) {
+//                test = test1.length / 2;
+//            }
+//            return test;
+//        }
+//        else {
+//            for (int j = 0; j < test1.length; j++) {
+//                int b = Math.round(a/2);
+//                int c = a/2-1;
+//                return (b+c)/2;
+//            }
+//        }
+//        return a;
+
+
+        int arrayLength = array.length;
+        int secondArrayLength = secondArray.length;
+        int[] a = new int[arrayLength + secondArrayLength];
+        int k = 0;
+        for (int i : array) {
+            a[k++] = i;
+        }
+
+        for (int i : secondArray) {
+            a[k++] = i;
+        }
+
+        Arrays.sort(a);
+
+        double median;
+        if (a.length % 2 == 0) {
+            median = a[a.length / 2];
+        } else {
+            median = (double) (a[(a.length - 1) / 2] + a[(a.length + 1) / 2]) / 2;
+        }
+
+        return median-1;
     }
 
     /**
@@ -79,8 +145,19 @@ public class Task {
      * @return 4
      */
     public int getSmallestMissing(int[] numbers) {
-        return 0;
+        int g = 0;
+        int f = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            g = Math.max(g, numbers[i]);
+            for (int j = 0; j < g; j++) {
+                if (numbers[i] != j) {
+                    f = j;
+                }
+            }
+        }
+        return f;
     }
+
 
     /**
      * Учитывая массив nums из различных целых чисел, верните все возможные перестановки, в виде двойного массива.
@@ -89,6 +166,9 @@ public class Task {
      * @return [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
      */
     public List<List<Integer>> permute(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+
+        }
         return null;
     }
 
@@ -102,6 +182,18 @@ public class Task {
      * @return [["bat"],["nat","tan"],["ate","eat","tea"]]
      */
     public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String, List<String>> stringListHashMap = new HashMap<>();
+        for (String s : strs) {
+            char[] chars = s.toCharArray();
+            String words = new String(chars);
+            if (stringListHashMap.containsKey(words)) {
+                stringListHashMap.get(words).add(s);
+            } else {
+                ArrayList<String> arrayList = new ArrayList<>();
+                arrayList.add(s);
+                stringListHashMap.put(words, arrayList);
+            }
+        }
         return null;
     }
 
